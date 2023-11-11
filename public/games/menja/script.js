@@ -137,7 +137,7 @@ const isPaused = () => state.menus.active === MENU_PAUSE;
 const highScoreKey = "__menja__highScore";
 
 // Initialize high score in localStorage from db
-const DbScore = async () => await fetch("http://localhost:3000/api/get-hi-score")
+const DbScore = async () => await fetch("https://pulz.netlify.app/api/get-hi-score")
   .then((res) => res.json())
   .then((data) => {
     localStorage.setItem(highScoreKey, data.score);
@@ -153,7 +153,7 @@ const setHighScore = (score) => {
   _lastHighscore = getHighScore();
   localStorage.setItem(highScoreKey, String(score));
   // Update leaderboard
-  fetch("http://localhost:3000/api/set-hi-score", {
+  fetch("https://pulz.netlify.app/api/set-hi-score", {
     method: "POST",
     body: JSON.stringify({ score: score }),
   })

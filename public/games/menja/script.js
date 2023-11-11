@@ -140,7 +140,6 @@ const highScoreKey = "__menja__highScore";
 const DbScore = async () => await fetch("http://localhost:3000/api/get-hi-score")
   .then((res) => res.json())
   .then((data) => {
-    console.log(data);
     localStorage.setItem(highScoreKey, data.score);
   });
 

@@ -44,7 +44,7 @@ export default function HankoAuth() {
         // Add user to supabase(if new) with a user-set gamer tag
         const { id } = await hanko.user.getCurrent();
         const userExists = await checkUserExistence(id);
-        let url = "/profile";
+        let url = "/games";
         if (!userExists) url = "/set-pulz-tag";
         redirectAfterLogin(url);
       }),

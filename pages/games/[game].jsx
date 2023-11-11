@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import fs from "fs";
 import path from "path";
@@ -7,22 +7,31 @@ import path from "path";
 function HtmlEmbed({ htmlContent }) {
   const router = useRouter();
   const { game } = router.query;
+  const [showHtml, setShowHtml] = useState(false);
 
   useEffect(() => {
-    // Game Styles
+    // Inject Game Styles
     const link = document.createElement("link");
     link.rel = "stylesheet";
     link.href = `/games/${game}/styles.css`;
     document.head.appendChild(link);
-    // Game Script
+    
+    // Inject Game Script
     const script = document.createElement("script");
     script.src = `/games/${game}/script.js`;
+    script.onload = () => {
+      // Set renderHtml to true once script has loaded
+      setShowHtml(true);
+    };
     document.head.appendChild(script);
   }, []);
 
   return (
     <div>
-      <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+      <div
+        dangerouslySetInnerHTML={{ __html: htmlContent }}
+        className={showHtml ? "" : "hidden"}
+      />
     </div>
   );
 }

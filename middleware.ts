@@ -19,5 +19,11 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard","/profile","/games","/set-pulz-tag"],
+  matcher: [
+    "/api/:path*",
+    "/dashboard",
+    "/profile",
+    "/games/:path?",
+    "/set-pulz-tag",
+  ],
 };

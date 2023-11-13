@@ -1,12 +1,12 @@
 import "../styles/globals.css";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
+// import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 function MyApp({ Component, pageProps }) {
-  const [parent, enableAnimations] = useAutoAnimate();
+  // const [parent, enableAnimations] = useAutoAnimate();
   return (
-    <div ref={parent}>
+    // <div ref={parent}>
       <Component {...pageProps} />
-    </div>
+    // </div>
   );
 }
 

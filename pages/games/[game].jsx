@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import fs from "fs";
 import path from "path";
+import NavBar from "../../components/NavBar";
 
 function HtmlEmbed({ htmlContent }) {
   const router = useRouter();
@@ -15,7 +16,7 @@ function HtmlEmbed({ htmlContent }) {
     link.rel = "stylesheet";
     link.href = `/games/${game}/styles.css`;
     document.head.appendChild(link);
-    
+
     // Inject Game Script
     const script = document.createElement("script");
     script.src = `/games/${game}/script.js`;
@@ -28,6 +29,7 @@ function HtmlEmbed({ htmlContent }) {
 
   return (
     <div>
+      <NavBar back />
       <div
         dangerouslySetInnerHTML={{ __html: htmlContent }}
         className={showHtml ? "" : "hidden"}

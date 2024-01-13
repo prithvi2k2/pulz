@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.1.1",
     "@supabase/supabase-js": "^2.38.4",
     "@teamhanko/hanko-elements": "^0.9.0",
     "axios": "^1.6.0",

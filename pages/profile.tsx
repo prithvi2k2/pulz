@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { LogoutButton } from "../components/LogoutButton";
+import NavBar from "../components/NavBar";
 
 const HankoProfile = dynamic(() => import("../components/HankoProfile"), {
   ssr: false,
@@ -8,6 +9,7 @@ const HankoProfile = dynamic(() => import("../components/HankoProfile"), {
 export default function ProfilePage() {
   return (
     <div>
+      <NavBar back />
       <HankoProfile />
       <LogoutButton />
     </div>

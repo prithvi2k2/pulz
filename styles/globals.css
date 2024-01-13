@@ -18,3 +18,9 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@layer components {
+  .nav-btn {
+    @apply h-11 w-11 p-2 cursor-pointer active:scale-75 transition-transform backdrop-blur-sm bg-white/20 rounded-full shadow-xl z-50;
+  }
+}

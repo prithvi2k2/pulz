@@ -5,50 +5,100 @@ import fs from "fs";
 import path from "path";
 import NavBar from "../../components/NavBar";
 
-function HtmlEmbed({ htmlContent }) {
+function HtmlEmbed({ html, css, js }) {
   const router = useRouter();
   const { game } = router.query;
   const [showHtml, setShowHtml] = useState(false);
+  const [gameUrl, setGameUrl] = useState("");
 
-  useEffect(() => {
-    // Inject Game Styles
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = `/games/${game}/styles.css`;
-    document.head.appendChild(link);
 
-    // Inject Game Script
-    const script = document.createElement("script");
-    script.src = `/games/${game}/script.js`;
-    script.onload = () => {
-      // Set renderHtml to true once script has loaded
-      setShowHtml(true);
+  const getGeneratedPageURL = ({ html, css, js }) => {
+    const getBlobURL = (code, type) => {
+      const blob = new Blob([code], { type });
+      return URL.createObjectURL(blob);
     };
-    document.head.appendChild(script);
+
+    const cssURL = getBlobURL(css, "text/css");
+    const jsURL = getBlobURL(js, "text/javascript");
+
+    const source = `
+    <html>
+      <head>
+        ${css && `<link rel="stylesheet" type="text/css" href="${cssURL}" />`}
+        ${js && `<script src="${jsURL}" defer></script>`}
+      </head>
+      <body>
+        ${html || ""}
+      </body>
+    </html>
+    `;
+
+    return getBlobURL(source, "text/html");
+  };
+
+  // async function fetchData(rawUrl) {
+  //   return await fetch(rawUrl)
+  //   .then((raw) => raw.text())
+  //   .then((text) => {return text})
+  //   .catch((err) => console.error(err));
+  // };
+
+  // fetchData(`/games/${game}/styles.css`).then((styles) => console.log(styles));
+
+  // Game is loaded in a container div, with help of useEffect
+  // let urlL;
+  useEffect(() => {
+    setGameUrl(getGeneratedPageURL({ html, css, js }));
+    // const url =  getGeneratedPageURL({ html, css, js });;
+    // urlL = url;
+    // console.log(html, css, js);
+    // url = getGeneratedPageURL({ html, css, js });
+    // const gameContainer = document.getElementById('pulz-game-container');
+
+    // Inject Game Styles
+    // const link = document.createElement("link");
+    // link.rel = "stylesheet";
+    // link.href = `/games/${game}/styles.css`;
+    // gameContainer.appendChild(link);
+
+    // // Inject Game Script
+    // const script = document.createElement("script");
+    // script.src = `/games/${game}/script.js`;
+    // script.onload = () => {
+    //   // Set renderHtml to true once script has loaded
+    setShowHtml(true);
+    // };
+    // gameContainer.appendChild(script);
   }, []);
 
   return (
-    <div>
+    <div className="h-screen flex flex-col">
       <NavBar back />
-      <div
-        dangerouslySetInnerHTML={{ __html: htmlContent }}
-        className={showHtml ? "" : "hidden"}
-      />
+      {/* <div
+        id="pulz-game-container"
+        // dangerouslySetInnerHTML={{ __html: htmlContent }}
+        src={htmlContent}
+        className={showHtml ? "h-64 w-28" : "hidden"}
+      ></div> */}
+      {/* <iframe src={url} className={showHtml ? "h-64 w-28" : "hidden"}></iframe> */}
+      {showHtml ? <iframe src={gameUrl} className="flex-1"></iframe> : "Loading game..."}
     </div>
   );
 }
 
 export async function getStaticProps(context) {
   const { game } = context.params;
-  const filePath = path.join(
-    process.cwd(),
-    "public",
-    `games/${game}/index.html`
-  );
-  const htmlContent = fs.readFileSync(filePath, "utf-8");
+  const filePath = (type) =>
+    path.join(process.cwd(), "public", `games/${game}/${type}`);
+  const html = fs.readFileSync(filePath("index.html"), "utf-8");
+  const css = fs.readFileSync(filePath("styles.css"), "utf-8");
+  const js = fs.readFileSync(filePath("script.js"), "utf-8");
+
   return {
     props: {
-      htmlContent,
+      html,
+      css,
+      js,
     },
   };
 }

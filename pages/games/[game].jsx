@@ -12,7 +12,7 @@ function HtmlEmbed({ html, css, js }) {
   const [gameUrl, setGameUrl] = useState("");
 
 
-  const getGeneratedPageURL = ({ html, css, js }) => {
+  const getGeneratedPageURL = ({ html, css, js, origin }) => {
     const getBlobURL = (code, type) => {
       const blob = new Blob([code], { type });
       return URL.createObjectURL(blob);
@@ -24,8 +24,8 @@ function HtmlEmbed({ html, css, js }) {
     const source = `
     <html>
       <head>
-        ${css && `<link rel="stylesheet" type="text/css" href="${cssURL}" />`}
-        ${js && `<script src="${jsURL}" defer></script>`}
+        ${css && `<link rel="stylesheet" type="text/css" href="${`${origin}/games/${game}/styles.css`}" />`}
+        ${js && `<script src="${`${origin}/games/${game}/script.js`}" defer></script>`}
       </head>
       <body>
         ${html || ""}
@@ -33,7 +33,7 @@ function HtmlEmbed({ html, css, js }) {
     </html>
     `;
 
-    return getBlobURL(source, "text/html");
+    return source;
   };
 
   // async function fetchData(rawUrl) {
@@ -48,7 +48,9 @@ function HtmlEmbed({ html, css, js }) {
   // Game is loaded in a container div, with help of useEffect
   // let urlL;
   useEffect(() => {
-    setGameUrl(getGeneratedPageURL({ html, css, js }));
+    const origin = window.location.origin;
+    console.log(origin);
+    setGameUrl(getGeneratedPageURL({ html, css, js, origin }));
     // const url =  getGeneratedPageURL({ html, css, js });;
     // urlL = url;
     // console.log(html, css, js);
@@ -81,7 +83,7 @@ function HtmlEmbed({ html, css, js }) {
         className={showHtml ? "h-64 w-28" : "hidden"}
       ></div> */}
       {/* <iframe src={url} className={showHtml ? "h-64 w-28" : "hidden"}></iframe> */}
-      {showHtml ? <iframe src={gameUrl} className="flex-1"></iframe> : "Loading game..."}
+      {showHtml ? <iframe srcDoc={gameUrl} className="flex-1"></iframe> : "Loading game..."}
     </div>
   );
 }

@@ -152,7 +152,6 @@ const getHighScore = () => {
 
 let _lastHighscore = getHighScore();
 const setHighScore = (score) => {
-  _lastHighscore = getHighScore();
   localStorage.setItem(highScoreKey, String(score));
   // Update leaderboard
   fetch("https://pulz.netlify.app/api/set-hi-score", {

@@ -17,8 +17,12 @@ export default function NavBar({ back }) {
         )}
       </div>
 
-      <div className="nav-btn w-max font-mono font-extrabold text-2xl select-none cursor-default">
-        ⚡ P U L Z ⚡
+      <div
+        className="nav-btn w-max font-mono font-extrabold text-2xl select-none cursor-default"
+        onClick={() => Router.push("/games")}
+      >
+        <span className="max-sm:hidden">⚡ P U L Z ⚡</span>
+        <span className="sm:hidden">⚡PULZ⚡</span>
       </div>
       <div className="flex gap-10">
         <div onClick={() => Router.push("/profile")}>

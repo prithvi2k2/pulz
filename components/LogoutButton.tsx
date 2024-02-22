@@ -7,6 +7,7 @@ const hankoApi = process.env.NEXT_PUBLIC_HANKO_API_URL;
 export function LogoutButton() {
   const router = useRouter();
   const [hanko, setHanko] = useState<Hanko>();
+  const [loggingOut, setLoggingOut] = useState(false);
 
   useEffect(() => {
     import("@teamhanko/hanko-elements").then(({ Hanko }) =>
@@ -15,6 +16,7 @@ export function LogoutButton() {
   }, []);
 
   const logout = async () => {
+    setLoggingOut(true);
     try {
       await hanko?.user.logout();
       router.push("/login");
@@ -25,5 +27,18 @@ export function LogoutButton() {
     }
   };
 
-  return <button onClick={logout}>Logout</button>;
+  return (
+    <button
+      onClick={logout}
+      className="btn outline-red-600 outline outline-2 hover:outline-4"
+    >
+      {loggingOut ? (
+        <span className="animate-spin inline-block">😭</span>
+      ) : (
+        <span>
+          <strong>LOGOUT</strong>
+        </span>
+      )}
+    </button>
+  );
 }

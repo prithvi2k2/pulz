@@ -24,9 +24,6 @@ export default function NavBar({ back }) {
         <div onClick={() => Router.push("/profile")}>
           <Cog6ToothIcon title="Settings" className="nav-btn" />
         </div>
-        <div>
-          <ArrowLeftStartOnRectangleIcon title="Log Out" className="nav-btn" />
-        </div>
       </div>
     </div>
   );

@@ -26,6 +26,14 @@ hanko-profile {
 
 @layer components {
   .nav-btn {
-    @apply h-11 w-11 p-2 cursor-pointer active:scale-75 transition-transform backdrop-blur-sm bg-white/20 rounded-full shadow-xl z-50;
+    @apply h-11 w-11 p-2 
+    cursor-pointer active:scale-75 transition-transform 
+    backdrop-blur-sm bg-white/20 rounded-full shadow-xl z-50
+    outline outline-1 hover:outline-2;
+  }
+  .btn{
+    @apply h-11 min-w-max p-2 
+    cursor-pointer active:scale-75 transition-transform 
+    backdrop-blur-sm bg-white/20 rounded-full shadow-xl z-50;
   }
 }

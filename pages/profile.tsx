@@ -11,7 +11,7 @@ export default function ProfilePage() {
   return (
     <div>
       <NavBar back />
-      <h1 className="flex items-center justify-center font-semibold text-4xl underline">
+      <h1 className="flex items-center justify-center font-semibold text-4xl underline mt-8">
         <Cog6ToothIcon className="h-10 w-10" />
         SETTINGS
         <Cog6ToothIcon className="h-10 w-10" />

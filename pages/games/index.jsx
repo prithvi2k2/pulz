@@ -1,24 +1,16 @@
-import Link from "next/link";
 import NavBar from "../../components/NavBar";
+import GameCard from "../../components/GameCard";
+import gameData from "../../games_metadata.json";
 
 export default function Games() {
   return (
-    <>
+    <div>
       <NavBar />
-      <div>
-        !!! Site under development !!!
-        <br />
-        You can still try the BETA game{" "}
-        <Link href="/games/menja" className="underline">
-          menja
-        </Link>{" "}
-        - Expect Bugs!
-        <hr />
-        <Link href="/profile" className="underline">
-          {" "}
-          Account Settings{" "}
-        </Link>
+      <div className="flex flex-wrap flex-1 items-center justify-center">
+        {gameData.map((game) => (
+          <GameCard key={game.id} {...game} />
+        ))}
       </div>
-    </>
+    </div>
   );
 }

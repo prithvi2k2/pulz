@@ -54,8 +54,8 @@ export default function GameCard({ ...props }) {
 
           <hr className="mt-4" />
 
-          <div className="mt-4 font-bold flex gap-1 text-lg nav-btn min-w-max">
-            <PlayIcon className="h-11 w-11 self-center" onClick={openGame} />
+          <div className="mt-4 font-bold flex gap-1 text-lg nav-btn min-w-max" onClick={openGame}>
+            <PlayIcon className="h-11 w-11 self-center" />
             play!
           </div>
         </div>

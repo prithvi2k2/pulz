@@ -6,9 +6,6 @@ import Router from "next/router";
 
 // This component is based on HyperUI/Marketing/Card
 export default function GameCard({ ...props }) {
-  const openGame = () => {
-    Router.push(`/games/${props.dir}`);
-  };
   return (
     <div className="m-3 group relative block h-64 sm:h-80 lg:h-96">
       <span className="absolute inset-0 border-2 border-dashed border-black"></span>
@@ -29,11 +26,22 @@ export default function GameCard({ ...props }) {
           </h2>
           <p className="mt-4 text-sm sm:text-base">{props.synopsis}</p>
           <hr className="mt-4" />
-          <div className="mt-4 font-bold flex gap-1 text-lg nav-btn min-w-fit">
-            <PlayIcon className="h-11 w-11 self-center" onClick={openGame} />
+
+          <p className="mt-2">
+            by{" "}
+            <Link target="_blank" href={props.author.link} className="link">
+              {props.author.name}
+            </Link>
+          </p>
+          <hr className="mt-4" />
+          <Link
+            className="mt-4 font-bold flex gap-1 text-lg nav-btn min-w-fit"
+            href={`/games/${props.dir}`}
+          >
+            <PlayIcon className="h-11 w-11 self-center" />
             {/* <HeartIcon className="h-11 w-11 self-center"/>
             <HeartedIcon className="h-11 w-11 self-center"/> */}
-          </div>
+          </Link>
         </div>
 
         <div className="absolute p-4 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 sm:p-6 lg:p-8">
@@ -54,10 +62,13 @@ export default function GameCard({ ...props }) {
 
           <hr className="mt-4" />
 
-          <div className="mt-4 font-bold flex gap-1 text-lg nav-btn min-w-max" onClick={openGame}>
+          <Link
+            className="mt-4 font-bold flex gap-1 text-lg nav-btn min-w-max"
+            href={`/games/${props.dir}`}
+          >
             <PlayIcon className="h-11 w-11 self-center" />
             play!
-          </div>
+          </Link>
         </div>
       </div>
     </div>

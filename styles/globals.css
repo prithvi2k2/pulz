@@ -32,9 +32,10 @@ hanko-profile {
     outline outline-1 hover:outline-2 select-none;
   }
   .btn {
-    @apply h-11 min-w-max p-2 
+    @apply h-11 max-w-fit p-2 
     cursor-pointer active:scale-75 transition-transform 
-    backdrop-blur-sm bg-white/20 rounded-full shadow-xl z-50;
+    rounded-full shadow-xl z-50
+    outline outline-1 hover:outline-2 select-none;
   }
   .link {
     @apply font-mono font-semibold italic underline decoration-wavy

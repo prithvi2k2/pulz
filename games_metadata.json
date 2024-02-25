@@ -8,5 +8,15 @@
             "link": "https://cmiller.tech/"
         },
         "dir": "menja"
+    },
+    {
+        "id": 1,
+        "title": "Tower Blocks",
+        "synopsis": "Test your reaction time by stacking as many blocks as you can!",
+        "author": {
+            "name": "Steve Gardner",
+            "link": "https://codepen.io/ste-vg"
+        },
+        "dir": "tower-blocks"
     }
 ]

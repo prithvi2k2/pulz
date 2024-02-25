@@ -88,8 +88,12 @@ export async function getStaticProps(context) {
 export default HtmlEmbed;
 
 export async function getStaticPaths() {
-  return {
-    paths: ["/games/menja"],
-    fallback: true,
-  };
+  const directory = path.join(process.cwd(), "public/games");
+  const filenames = fs.readdirSync(directory);
+
+  const paths = filenames.map((gameDir) => ({
+    params: { game: gameDir },
+  }));
+
+  return { paths, fallback: true };
 }

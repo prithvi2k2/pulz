@@ -28,5 +28,25 @@
             "link": "https://codepen.io/Yakudoo/"
         },
         "dir": "rabbit-run"
+    },
+    {
+        "id": 4,
+        "title": "Planet Defense",
+        "synopsis": "Secure the planet by shooting down Asteroids",
+        "author": {
+            "name": "Marc López Ávila",
+            "link": "https://codepen.io/Loopez10"
+        },
+        "dir": "planet-defense"
+    },
+    {
+        "id": 5,
+        "title": "Coloron",
+        "synopsis": "Match the color with bouncing ball",
+        "author": {
+            "name": "Greg Hovanesyan",
+            "link": "https://codepen.io/gregh"
+        },
+        "dir": "coloron"
     }
 ]

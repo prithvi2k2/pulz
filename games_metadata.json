@@ -1,6 +1,6 @@
 [
     {
-        "id": 0,
+        "id": 1,
         "title": "Menja",
         "synopsis": "A fun arcade slasher game",
         "author": {
@@ -10,7 +10,7 @@
         "dir": "menja"
     },
     {
-        "id": 1,
+        "id": 2,
         "title": "Tower Blocks",
         "synopsis": "Test your reaction time by stacking as many blocks as you can!",
         "author": {
@@ -18,5 +18,15 @@
             "link": "https://codepen.io/ste-vg"
         },
         "dir": "tower-blocks"
+    },
+    {
+        "id": 3,
+        "title": "Rabbit Run",
+        "synopsis": "The frantic run of the valorous rabbit",
+        "author": {
+            "name": "Karim Maaloul",
+            "link": "https://codepen.io/Yakudoo/"
+        },
+        "dir": "rabbit-run"
     }
 ]

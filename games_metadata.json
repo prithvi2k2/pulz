@@ -1,0 +1,12 @@
+[
+    {
+        "id": 0,
+        "title": "Menja",
+        "synopsis": "A fun arcade slasher game",
+        "author": {
+            "name": "Caleb Miller",
+            "link": "https://cmiller.tech/"
+        },
+        "dir": "menja"
+    }
+]
